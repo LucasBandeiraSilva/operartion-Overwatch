@@ -7,10 +7,12 @@ services:
     container_name: db_overwatch
     environment:
       MYSQL_ROOT_PASSWORD: root123
-      MYSQL_USER: nickFury123
-      MYSQL_PASSWORD: nickFuryShield123
+      MYSQL_USER: nick_fury123
+      MYSQL_PASSWORD: nick-fury-shield123
     ports:
       - "3306:3306"
     volumes:
-      - ./data:/var/lib/mysql
+      - data:/var/lib/mysql
 
+volumes:
+  data:
