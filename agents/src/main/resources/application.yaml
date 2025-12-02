@@ -1,3 +1,25 @@
 spring:
   application:
-    name: agents
+    name: OW-agents
+  datasource:
+    url: jdbc:mysql://localhost:3306/overwatch_supers_db
+    username: nick_fury123
+    password: nick-fury-shield123
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql:true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+
+
+server:
+  port: 8081

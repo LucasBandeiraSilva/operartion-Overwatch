@@ -35,7 +35,7 @@ public class Agent {
     }
 
     @Transient
-    private int getAge(){
+    public int getAge(){
         return Period.between(this.dateOfBirth,LocalDate.now()).getYears();
     }
 
