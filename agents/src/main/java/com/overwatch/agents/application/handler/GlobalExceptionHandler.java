@@ -5,6 +5,8 @@ import com.overwatch.agents.domain.exception.AgentTooYoungException;
 import com.overwatch.agents.domain.exception.DirectorNotAuthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -30,5 +32,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse>handleDirectorNotAuthorizedException(DirectorNotAuthorizedException e){
         var errorResponse = new ErrorResponse(HttpStatus.FORBIDDEN.value(), e.getMessage(), List.of(),LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorResponse);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse>handleMethodArgumentNotValidException(MethodArgumentNotValidException e){
+        List<FieldError> fieldErrorList =e.getFieldErrors();
+        List<ApiFieldError> apiFieldErrors = fieldErrorList.stream().map(fieldError -> new ApiFieldError(fieldError.getField(),fieldError.getDefaultMessage())).toList();
+        var errorResponse = new ErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Validation Error",apiFieldErrors,LocalDateTime.now());
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorResponse);
     }
 }

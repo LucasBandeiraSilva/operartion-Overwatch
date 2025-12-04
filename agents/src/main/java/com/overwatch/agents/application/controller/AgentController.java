@@ -3,6 +3,7 @@ package com.overwatch.agents.application.controller;
 import com.overwatch.agents.application.dto.AgentDTO;
 import com.overwatch.agents.domain.model.Agent;
 import com.overwatch.agents.domain.service.AgentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class AgentController {
     }
 
     @PostMapping
-    public ResponseEntity <Void> saveAgent( @RequestBody AgentDTO agentDTO ) {
+    public ResponseEntity <Void> saveAgent( @RequestBody @Valid AgentDTO agentDTO ) {
         Agent savedAgent = service.saveAgent(agentDTO);
         var location = getUri(savedAgent.getId());
         return ResponseEntity.created(location).build();
