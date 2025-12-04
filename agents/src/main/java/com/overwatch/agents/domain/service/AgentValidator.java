@@ -1,6 +1,8 @@
 package com.overwatch.agents.domain.service;
 
+import com.overwatch.agents.domain.enums.AgentRole;
 import com.overwatch.agents.domain.exception.AgentTooYoungException;
+import com.overwatch.agents.domain.exception.DirectorNotAuthorizedException;
 import com.overwatch.agents.domain.model.Agent;
 import org.springframework.stereotype.Component;
 
@@ -12,5 +14,10 @@ public class AgentValidator {
 
     public void validateAge( Agent agent ){
         if (agent.getAge() < MINIMUM_AGE) throw new AgentTooYoungException("Agent must be at least 18 years old");
+    }
+
+    public void validateDirectorRole(Agent director ){
+        if (director.getAgentRole() != AgentRole.DIRECTOR) throw new DirectorNotAuthorizedException(director.getAgentCode());
+
     }
 }
