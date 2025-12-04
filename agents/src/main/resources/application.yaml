@@ -2,9 +2,9 @@ spring:
   application:
     name: OW-agents
   datasource:
-    url: jdbc:mysql://localhost:3306/overwatch_supers_db
-    username: nick_fury123
-    password: nick-fury-shield123
+    url: jdbc:mysql://localhost:3306/overwatch_agents_db
+    username: nickFury123
+    password: nickFuryShield123
   jpa:
     hibernate:
       ddl-auto: none
