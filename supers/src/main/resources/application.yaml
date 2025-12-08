@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: OW-supers
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/overwatch_supers_db
+    username: nickFury123
+    password: nickFuryShield123
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql:true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: 'http://localhost:8761/eureka'
+
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+
+server:
+  port: 8082
