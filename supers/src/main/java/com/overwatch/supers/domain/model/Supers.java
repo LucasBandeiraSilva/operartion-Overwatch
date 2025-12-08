@@ -13,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@ToString
 public class Supers {
 
     @Id
@@ -26,12 +27,19 @@ public class Supers {
     private String superCode;
 
     @ElementCollection
-    @CollectionTable(name = "tb_super_abilities",joinColumns = @JoinColumn(name = "super_id"))
+    @CollectionTable(name = "tb_super_abilities", joinColumns = @JoinColumn(name = "super_id"))
     @Column(name = "ability")
     private List <String> abilities;
 
     @Enumerated(EnumType.STRING)
     private ThreatLevel threatLevel;
+
+    private boolean active;
+
+    @PrePersist
+    private void prePersist() {
+        this.active = true;
+    }
 
 }
 
