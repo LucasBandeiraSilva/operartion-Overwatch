@@ -3,6 +3,7 @@ package com.overwatch.supers.application.controller;
 import com.overwatch.supers.application.dto.SupersDTO;
 import com.overwatch.supers.domain.model.Supers;
 import com.overwatch.supers.domain.service.SupersService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class SupersController {
     }
 
     @PostMapping
-    public ResponseEntity <Void> saveSuper( @RequestBody SupersDTO supersDTO ) {
+    public ResponseEntity <Void> saveSuper( @RequestBody @Valid SupersDTO supersDTO ) {
         Supers savedSuper = service.save(supersDTO);
         log.info("saved hero: {}",savedSuper);
         URI location = getUri(savedSuper);
@@ -45,4 +46,21 @@ public class SupersController {
         return ResponseEntity.ok(superFound);
     }
 
+    @PutMapping("/{superCode}")
+    public ResponseEntity<Void>updateSuper(@PathVariable String superCode, @Valid @RequestBody SupersDTO supersDTO){
+        service.updateSuper(supersDTO,superCode);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{superCode}")
+    public ResponseEntity<Void>deleteSuper(@PathVariable String superCode){
+        service.disableSuper(superCode);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{superCode}/enable")
+    public ResponseEntity<Void>enableSuper(@PathVariable String superCode){
+        service.enableSuper(superCode);
+        return ResponseEntity.noContent().build();
+    }
 }
