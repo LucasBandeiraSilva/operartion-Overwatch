@@ -1,4 +1,4 @@
-package com.overwatch.agents.domain.repository;
+package com.overwatch.agents.infrastructure.repository;
 
 import com.overwatch.agents.domain.model.Agent;
 import org.springframework.data.jpa.repository.JpaRepository;

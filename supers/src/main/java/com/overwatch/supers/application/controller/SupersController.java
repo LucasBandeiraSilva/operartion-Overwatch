@@ -63,4 +63,5 @@ public class SupersController {
         service.enableSuper(superCode);
         return ResponseEntity.noContent().build();
     }
+
 }

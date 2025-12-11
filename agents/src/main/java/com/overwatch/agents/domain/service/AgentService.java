@@ -3,10 +3,15 @@ package com.overwatch.agents.domain.service;
 import com.overwatch.agents.application.assembler.AgentMapper;
 import com.overwatch.agents.application.dto.AgentDTO;
 import com.overwatch.agents.domain.exception.AgentNotFoundException;
+import com.overwatch.agents.domain.exception.SuperNotFoundException;
 import com.overwatch.agents.domain.model.Agent;
-import com.overwatch.agents.domain.repository.AgentRepository;
+import com.overwatch.agents.infrastructure.client.SupersClient;
+import com.overwatch.agents.infrastructure.client.representation.SuperRepresentation;
+import com.overwatch.agents.infrastructure.repository.AgentRepository;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +25,16 @@ public class AgentService {
     private final AgentRepository repository;
     private final AgentMapper mapper;
     private final AgentValidator validator;
+    private final SupersClient apiSupers;
+
+    public SuperRepresentation findByIdSuper(Long id){
+        try {
+            var response = apiSupers.findById(id);
+            return response.getBody();
+        } catch (FeignException.NotFound e) {
+            throw new SuperNotFoundException(id);
+        }
+    }
 
     private static void update( AgentDTO agentDTO, Agent savedAgent ) {
         savedAgent.setName(agentDTO.name());

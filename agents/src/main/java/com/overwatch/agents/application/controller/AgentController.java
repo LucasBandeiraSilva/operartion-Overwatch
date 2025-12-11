@@ -3,6 +3,7 @@ package com.overwatch.agents.application.controller;
 import com.overwatch.agents.application.dto.AgentDTO;
 import com.overwatch.agents.domain.model.Agent;
 import com.overwatch.agents.domain.service.AgentService;
+import com.overwatch.agents.infrastructure.client.representation.SuperRepresentation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,5 +57,10 @@ public class AgentController {
         service.enableAgent(agentCode, directorCode);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}/supers")
+    public ResponseEntity<SuperRepresentation>testFeign(@PathVariable Long id){
+        SuperRepresentation representation = service.findByIdSuper(id);
+        return ResponseEntity.ok(representation);}
 
 }

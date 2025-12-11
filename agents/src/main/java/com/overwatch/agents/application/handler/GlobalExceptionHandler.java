@@ -3,6 +3,8 @@ package com.overwatch.agents.application.handler;
 import com.overwatch.agents.domain.exception.AgentNotFoundException;
 import com.overwatch.agents.domain.exception.AgentTooYoungException;
 import com.overwatch.agents.domain.exception.DirectorNotAuthorizedException;
+import com.overwatch.agents.domain.exception.SuperNotFoundException;
+import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -40,5 +42,11 @@ public class GlobalExceptionHandler {
         List<ApiFieldError> apiFieldErrors = fieldErrorList.stream().map(fieldError -> new ApiFieldError(fieldError.getField(),fieldError.getDefaultMessage())).toList();
         var errorResponse = new ErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Validation Error",apiFieldErrors,LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorResponse);
+    }
+
+    @ExceptionHandler(SuperNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleSuperNotFoundException( SuperNotFoundException e){
+        var errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage(), List.of(),LocalDateTime.now());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 }
