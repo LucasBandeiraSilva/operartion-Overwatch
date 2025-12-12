@@ -23,6 +23,8 @@ public record AgentDTO(
         String agentCode,
 
         @NotNull(message = "Agent role must be provided")
-        AgentRole agentRole) {
+        AgentRole agentRole,
+
+        long superId) {
 
 }

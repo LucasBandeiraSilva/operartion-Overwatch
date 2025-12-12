@@ -2,6 +2,7 @@ package com.overwatch.agents.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.overwatch.agents.domain.enums.AgentRole;
+import com.overwatch.agents.infrastructure.client.representation.SuperRepresentation;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class Agent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long superId;
     private String name;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
@@ -38,5 +40,8 @@ public class Agent {
     public int getAge(){
         return Period.between(this.dateOfBirth,LocalDate.now()).getYears();
     }
+
+    @Transient
+    private SuperRepresentation superRepresentation;
 
 }

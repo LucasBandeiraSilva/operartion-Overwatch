@@ -4,6 +4,8 @@ import com.overwatch.agents.application.dto.AgentDTO;
 import com.overwatch.agents.domain.model.Agent;
 import com.overwatch.agents.domain.service.AgentService;
 import com.overwatch.agents.infrastructure.client.representation.SuperRepresentation;
+import com.overwatch.agents.infrastructure.mapper.DetailSupersMapper;
+import com.overwatch.agents.infrastructure.mapper.representation.DetailAgentRepresentation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,7 @@ import java.util.List;
 public class AgentController {
 
     private final AgentService service;
+    private final DetailSupersMapper mapper;
 
     private static URI getUri( Long id ) {
         var location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
@@ -59,8 +62,11 @@ public class AgentController {
     }
 
     @GetMapping("/{id}/supers")
-    public ResponseEntity<SuperRepresentation>testFeign(@PathVariable Long id){
-        SuperRepresentation representation = service.findByIdSuper(id);
-        return ResponseEntity.ok(representation);}
+    public ResponseEntity <DetailAgentRepresentation> testFeign( @PathVariable Long id ) {
+        return service.loadFullData(id)
+                .map(mapper::toRepresentation)
+                .map(ResponseEntity::ok)
+                .orElseGet(()-> ResponseEntity.notFound().build());
+    }
 
 }

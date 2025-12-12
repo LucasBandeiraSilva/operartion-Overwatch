@@ -7,6 +7,7 @@ import com.overwatch.agents.domain.exception.SuperNotFoundException;
 import com.overwatch.agents.domain.model.Agent;
 import com.overwatch.agents.infrastructure.client.SupersClient;
 import com.overwatch.agents.infrastructure.client.representation.SuperRepresentation;
+import com.overwatch.agents.infrastructure.mapper.DetailSupersMapper;
 import com.overwatch.agents.infrastructure.repository.AgentRepository;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +29,14 @@ public class AgentService {
     private final AgentValidator validator;
     private final SupersClient apiSupers;
 
-    public SuperRepresentation findByIdSuper(Long id){
+    private static void update( AgentDTO agentDTO, Agent savedAgent ) {
+        savedAgent.setName(agentDTO.name());
+        savedAgent.setDateOfBirth(agentDTO.dateOfBirth());
+        savedAgent.setAgentRole(agentDTO.agentRole());
+        savedAgent.setAgentCode(agentDTO.agentCode());
+    }
+
+    public SuperRepresentation findByIdSuper( Long id ) {
         try {
             var response = apiSupers.findById(id);
             return response.getBody();
@@ -36,16 +45,10 @@ public class AgentService {
         }
     }
 
-    private static void update( AgentDTO agentDTO, Agent savedAgent ) {
-        savedAgent.setName(agentDTO.name());
-        savedAgent.setDateOfBirth(agentDTO.dateOfBirth());
-        savedAgent.setAgentRole(agentDTO.agentRole());
-        savedAgent.setAgentCode(agentDTO.agentCode());
-    }
-
     public Agent saveAgent( AgentDTO agentDTO ) {
         var agent = mapper.toEntity(agentDTO);
         validator.validateAge(agent);
+        findByIdSuper(agent.getSuperId());
         return repository.save(agent);
     }
 
@@ -85,6 +88,23 @@ public class AgentService {
         Agent agent = validateDirectorAndFindAgent(agentCode, directorCode);
 
         update(agentDTO, agent);
+
+    }
+
+    public Optional <Agent> loadFullData( Long id ) {
+        Optional <Agent> agentOptional = repository.findById(id);
+        agentOptional.ifPresentOrElse(agent -> {
+            if (agent.getSuperId() != null) loadSupersData(agent.getSuperId(), agent);
+        }, () -> {
+            throw new AgentNotFoundException(id);
+        });
+        return agentOptional;
+    }
+
+
+    public void loadSupersData( Long id, Agent agent ) {
+        var representation = findByIdSuper(id);
+        agent.setSuperRepresentation(representation);
 
     }
 

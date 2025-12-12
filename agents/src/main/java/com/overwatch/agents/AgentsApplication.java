@@ -13,9 +13,9 @@ public class AgentsApplication {
 		SpringApplication.run(AgentsApplication.class, args);
 	}
 
-    @Bean
-    public CommandLineRunner commandLineRunner ( KafkaTemplate<String,String> kafkaTemplate ){
-        return args -> kafkaTemplate.send("overwatch.published-supers","data","Hello World!.");
-    }
+//    @Bean
+//    public CommandLineRunner commandLineRunner ( KafkaTemplate<String,String> kafkaTemplate ){
+//        return args -> kafkaTemplate.send("overwatch.published-supers","data","Hello World!.");
+//    }
 
 }
