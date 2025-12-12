@@ -26,6 +26,11 @@ overwatch:
     clients:
       supers:
         url: 'http://localhost:8082/supers'
+  config:
+    kafka:
+      server-url: 'localhost:29092'
+      topics:
+        published-supers: 'overwatch.published-supers'
 
 
 server:
