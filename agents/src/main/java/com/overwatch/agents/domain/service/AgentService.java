@@ -7,12 +7,11 @@ import com.overwatch.agents.domain.exception.SuperNotFoundException;
 import com.overwatch.agents.domain.model.Agent;
 import com.overwatch.agents.infrastructure.client.SupersClient;
 import com.overwatch.agents.infrastructure.client.representation.SuperRepresentation;
-import com.overwatch.agents.infrastructure.mapper.DetailSupersMapper;
+import com.overwatch.agents.infrastructure.messaging.publisher.AgentPublisher;
 import com.overwatch.agents.infrastructure.repository.AgentRepository;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +27,7 @@ public class AgentService {
     private final AgentMapper mapper;
     private final AgentValidator validator;
     private final SupersClient apiSupers;
+    private final AgentPublisher publisher;
 
     private static void update( AgentDTO agentDTO, Agent savedAgent ) {
         savedAgent.setName(agentDTO.name());
@@ -106,6 +106,14 @@ public class AgentService {
         var representation = findByIdSuper(id);
         agent.setSuperRepresentation(representation);
 
+    }
+
+    public void publishKafka(Long id, Long superId){
+        Agent agent = repository.findById(id).orElseThrow(() -> {
+            throw new AgentNotFoundException(id);
+        });
+        loadSupersData(superId,agent);
+        publisher.publish(agent);
     }
 
 }

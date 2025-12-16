@@ -3,8 +3,7 @@ package com.overwatch.agents.application.controller;
 import com.overwatch.agents.application.dto.AgentDTO;
 import com.overwatch.agents.domain.model.Agent;
 import com.overwatch.agents.domain.service.AgentService;
-import com.overwatch.agents.infrastructure.client.representation.SuperRepresentation;
-import com.overwatch.agents.infrastructure.mapper.DetailSupersMapper;
+import com.overwatch.agents.infrastructure.mapper.DetailAgentsSupersMapper;
 import com.overwatch.agents.infrastructure.mapper.representation.DetailAgentRepresentation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ import java.util.List;
 public class AgentController {
 
     private final AgentService service;
-    private final DetailSupersMapper mapper;
+    private final DetailAgentsSupersMapper mapper;
 
     private static URI getUri( Long id ) {
         var location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
@@ -67,6 +66,12 @@ public class AgentController {
                 .map(mapper::toRepresentation)
                 .map(ResponseEntity::ok)
                 .orElseGet(()-> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/{id}/supers/{superId}/publish")
+    public ResponseEntity<Void>publishSuperAssignment(@PathVariable Long id, @PathVariable Long superId){
+        service.publishKafka(id,superId);
+        return ResponseEntity.noContent().build();
     }
 
 }

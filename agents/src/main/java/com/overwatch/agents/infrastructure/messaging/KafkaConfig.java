@@ -1,4 +1,4 @@
-package com.overwatch.agents.infrastructure.config;
+package com.overwatch.agents.infrastructure.messaging;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
