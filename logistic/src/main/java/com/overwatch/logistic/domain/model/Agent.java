@@ -8,6 +8,7 @@ import java.util.List;
 public record Agent(
         Long id,
         String name,
+        String agentCode,
         LocalDate dateOfBirth,
         AgentRole agentRole,
         Supers supers) {

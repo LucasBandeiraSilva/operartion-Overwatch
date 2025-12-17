@@ -1,4 +1,4 @@
-package com.overwatch.logistic.interfaces;
+package com.overwatch.logistic.infrastructure.interfaces;
 
 import com.overwatch.logistic.infrastructure.storage.minio.BucketFile;
 import com.overwatch.logistic.infrastructure.storage.minio.service.BucketService;

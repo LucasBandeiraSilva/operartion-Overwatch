@@ -8,7 +8,7 @@ import java.util.List;
 public record Supers(
         Long id,
         String nameSuper,
-        LocalDate supersDateOfBirth,
+        LocalDate birth,
         String superCode,
         List <String> abilities,
         ThreatLevel threatLevel) {

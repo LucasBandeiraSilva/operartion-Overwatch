@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 public interface AgentMapper {
 
     @Mapping(source = "nameSuper",target = "supers.nameSuper")
-    @Mapping(source = "dateOfBirth",target = "supers.supersDateOfBirth")
+    @Mapping(source = "birth",target = "supers.birth")
     @Mapping(source = "superCode",target = "supers.superCode")
     @Mapping(source = "abilities",target = "supers.abilities")
     @Mapping(source = "threatLevel",target = "supers.threatLevel")

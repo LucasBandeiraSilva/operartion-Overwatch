@@ -10,10 +10,12 @@ import java.util.List;
 
 public record DetailAgentRepresentation(
         String name,
+        AgentRole agentRole,
+        LocalDate dateOfBirth,
         String agentCode,
         String nameSuper,
         @JsonFormat(pattern = "yyyy-MM-dd")
-        LocalDate supersDateOfBirth,
+        LocalDate birth,
         String superCode,
         List <String> abilities,
         ThreatLevel threatLevel
