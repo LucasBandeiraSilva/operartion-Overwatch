@@ -1,0 +1,285 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="overwatch-report" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ab59b011-6aa7-45c6-9d9f-cf02c3c71280">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<dataset name="Dataset1" uuid="b30ecd6d-af75-4854-a79b-36f6b48a14a7">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<query language="sql"><![CDATA[]]></query>
+	</dataset>
+	<dataset name="AbilitiesDataset" uuid="8d3697de-e574-45a0-b265-db6db9e2a3af">
+		<query language="sql"><![CDATA[]]></query>
+		<field name="value" class="java.lang.String"/>
+	</dataset>
+	<parameter name="NAME" class="java.lang.String"/>
+	<parameter name="AGENT_CODE" class="java.lang.String"/>
+	<parameter name="DATE_OF_BIRTH" class="java.lang.String"/>
+	<parameter name="AGENT_ROLE" class="java.lang.String"/>
+	<parameter name="NAME_SUPER" class="java.lang.String"/>
+	<parameter name="BIRTH" class="java.lang.String"/>
+	<parameter name="SUPER_CODE" class="java.lang.String"/>
+	<parameter name="THREAT_LEVEL" class="java.lang.String"/>
+	<parameter name="ABILITIES" class="java.lang.String"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="ABILITIES" class="java.lang.String"/>
+	<background splitType="Stretch"/>
+	<title height="140" splitType="Stretch">
+		<element kind="staticText" uuid="5ee369be-254c-443e-9234-d13522b84b85" mode="Opaque" x="0" y="0" width="410" height="20" fontSize="14.0" bold="true" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[COMMAND AND OPERATIONAL INTELLIGENCE REPORT]]></text>
+		</element>
+		<element kind="staticText" uuid="52354fdd-f0c4-42ac-8562-531ce8fc7a84" x="0" y="30" width="140" height="20" fontSize="12.0" bold="true">
+			<text><![CDATA[OVERWATCH PROJECT]]></text>
+		</element>
+		<element kind="staticText" uuid="51631bb9-c44d-4a13-8d76-494c958c9990" x="0" y="50" width="370" height="30" fontSize="11.0" hTextAlign="Left" vTextAlign="Middle">
+			<text><![CDATA[Overwatch National System for Monitoring and Control of Special Entites]]></text>
+		</element>
+		<element kind="staticText" uuid="b1916444-4f04-470f-aecf-ae37a199ddae" x="0" y="90" width="80" height="20" fontSize="11.0" bold="true">
+			<text><![CDATA[Classification:]]></text>
+		</element>
+		<element kind="staticText" uuid="e3692db9-e527-4d39-8a51-43c9ff327409" x="80" y="90" width="100" height="20">
+			<paragraph leftIndent="0"/>
+			<text><![CDATA[TOP SECRET]]></text>
+			<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+		</element>
+		<element kind="staticText" uuid="c196f438-97f2-445d-b07e-1deb1aaddba3" x="0" y="120" width="80" height="20" fontSize="11.0" bold="true">
+			<text><![CDATA[Distribution:]]></text>
+		</element>
+		<element kind="staticText" uuid="9df899e1-8ffd-479d-b48c-1893eea27ca0" x="80" y="120" width="190" height="20">
+			<text><![CDATA[High Command and Strategic Intelligence]]></text>
+		</element>
+	</title>
+	<detail>
+		<band height="530" splitType="Stretch">
+			<element kind="staticText" uuid="c898f2de-673e-4cc6-9354-66fac9b3dfae" x="0" y="0" width="220" height="30">
+				<text><![CDATA[I. OPERATIONAL AGENT IDENTIFICATION]]></text>
+			</element>
+			<element kind="staticText" uuid="ecd6e5fb-b8ca-4c38-ba3f-a7997575cf40" x="0" y="30" width="90" height="20">
+				<text><![CDATA[Registered Name:]]></text>
+			</element>
+			<element kind="staticText" uuid="8ddbb6d0-522e-4f14-915a-cbd215e143f6" x="0" y="50" width="90" height="20">
+				<text><![CDATA[Operational Code:]]></text>
+			</element>
+			<element kind="staticText" uuid="f534b2af-71e9-4eae-9b10-7ff1eae68143" x="0" y="70" width="90" height="20">
+				<text><![CDATA[Assigned Role:]]></text>
+			</element>
+			<element kind="staticText" uuid="b764f164-1cce-4568-a487-eb1f6d87047a" x="0" y="90" width="90" height="20">
+				<text><![CDATA[Date of Birth:]]></text>
+			</element>
+			<element kind="staticText" uuid="2b014f50-aeca-421f-9e7b-6f99dabbedc5" x="0" y="120" width="558" height="30" bold="false">
+				<text><![CDATA[The agent identified above is formally authorized by the OVERWATCH PROJECT to register, supervise and operate, special entities under governmental jursdiction, reporting directily to superior command authorities.]]></text>
+			</element>
+			<element kind="rectangle" uuid="93a025cf-2c12-4553-ad6a-b9587649bd37" x="0" y="160" width="558" height="1" backcolor="#030303">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineWidth="0.0"/>
+			</element>
+			<element kind="staticText" uuid="b346ae68-c24e-4819-988e-1050aa0aa9d7" x="0" y="170" width="210" height="20">
+				<text><![CDATA[II. SPECIAL ENTITY IDENTIFICATION]]></text>
+			</element>
+			<element kind="staticText" uuid="8dea69d3-111c-410d-9299-0ad0c9a30da4" x="0" y="190" width="120" height="20">
+				<text><![CDATA[(OVERWATCH registry)]]></text>
+			</element>
+			<element kind="staticText" uuid="0a1dab8a-1e73-4857-9e56-21883c17a78a" x="1" y="220" width="100" height="20">
+				<text><![CDATA[Official Designation: ]]></text>
+			</element>
+			<element kind="staticText" uuid="dcbe36a6-adbc-42b3-8e85-a1480e20b9d8" x="1" y="240" width="100" height="20">
+				<text><![CDATA[Identification Code:]]></text>
+			</element>
+			<element kind="staticText" uuid="73edbebf-cab0-4e25-9e44-c7667f0b08a5" x="1" y="260" width="100" height="20">
+				<text><![CDATA[Date of Birth:]]></text>
+			</element>
+			<element kind="staticText" uuid="ffbf66ec-eb2f-4d8c-878a-fa0263c71bb4" x="1" y="280" width="100" height="20">
+				<text><![CDATA[Current Threat Level: ]]></text>
+			</element>
+			<element kind="staticText" uuid="8f6d24bc-6f90-4870-b8f1-19370165e249" x="1" y="310" width="554" height="20">
+				<text><![CDATA[Classification assigned in acordence with OVERWATCH Operational Risk Assessment Protocol.]]></text>
+			</element>
+			<element kind="staticText" uuid="5f54e046-4794-44c3-a1b8-6614ad2d40ef" x="1" y="330" width="440" height="20">
+				<text><![CDATA[LOW | MODERATE | HIGH | SEVERE | CRITICAL]]></text>
+			</element>
+			<element kind="textField" uuid="ac8969f8-b0ba-450b-8cbf-c875b0b189ea" x="90" y="30" width="130" height="20">
+				<expression><![CDATA[$P{NAME}]]></expression>
+			</element>
+			<element kind="textField" uuid="3c51dd5f-35e3-4415-aec0-de4cac38e800" x="90" y="50" width="130" height="20">
+				<expression><![CDATA[$P{AGENT_CODE}]]></expression>
+			</element>
+			<element kind="textField" uuid="0c43f59e-a5cb-4fd8-9ed7-de05d67728f0" x="90" y="90" width="130" height="20">
+				<expression><![CDATA[$P{DATE_OF_BIRTH}]]></expression>
+			</element>
+			<element kind="textField" uuid="6217de97-b0ce-4fec-9f21-1f0e0cf6facc" x="90" y="70" width="130" height="20">
+				<expression><![CDATA[$P{AGENT_CODE}]]></expression>
+			</element>
+			<element kind="textField" uuid="976aa449-b64f-4af0-83d6-a4d4b2b1b4a7" x="101" y="220" width="119" height="20">
+				<expression><![CDATA[$P{NAME_SUPER}]]></expression>
+			</element>
+			<element kind="textField" uuid="9d113a00-5be4-44f4-bd78-ae2edb66c7da" x="101" y="260" width="119" height="20">
+				<expression><![CDATA[$P{BIRTH}]]></expression>
+			</element>
+			<element kind="textField" uuid="1a71ba50-0796-4357-8f1e-fcc056b78459" x="101" y="240" width="119" height="20">
+				<expression><![CDATA[$P{SUPER_CODE}]]></expression>
+			</element>
+			<element kind="textField" uuid="e1d53438-d6f2-4b3e-b61d-6d2723b53d5a" x="101" y="280" width="119" height="20">
+				<expression><![CDATA[$P{THREAT_LEVEL}]]></expression>
+			</element>
+			<element kind="staticText" uuid="efaa9632-a6bf-4e7a-a799-8a6009ad7497" x="1" y="370" width="230" height="20">
+				<text><![CDATA[III. CONFIRMED OPERATTIONAL CAPABILITIES]]></text>
+			</element>
+			<element kind="staticText" uuid="e49e015f-9655-45da-8ffa-e94bfaae216e" x="0" y="402" width="554" height="20">
+				<text><![CDATA[The following abilities have been validated, cataloged, and approved by the intelligence systems of the OVERWATCH Project.]]></text>
+			</element>
+			<element kind="staticText" uuid="f35f3241-aac6-4acb-b015-79b6341e4ed3" x="0" y="500" width="554" height="30">
+				<text><![CDATA[The capabilities listed above grant the entity the potential for direct impact on tactical operations, strategic assets, and institutional stability.]]></text>
+			</element>
+			<element kind="textField" uuid="9e3d646c-bf70-4e2b-8471-9959e49b45ed" x="1" y="430" width="100" height="60">
+				<expression><![CDATA[$P{ABILITIES}]]></expression>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+		<band height="360">
+			<element kind="staticText" uuid="86469813-9861-463f-a2b9-7f20e0a495f8" x="1" y="10" width="349" height="30">
+				<text><![CDATA[IV. INTELLIGENCE ANALYSIS AND THREAT ASSESSMENT]]></text>
+			</element>
+			<element kind="staticText" uuid="e39b4866-d6fb-41d7-9b76-2df6334c656d" x="1" y="50" width="460" height="30">
+				<text><![CDATA[Following cross-analysis of operational data, historical records, and risk projections conducted by the OVERWATCH Intelligence Division, the following conclusion has been reached:]]></text>
+			</element>
+			<element kind="staticText" uuid="d64482f9-e214-47e2-8f20-c0dc8dbe7c95" x="1" y="90" width="100" height="15">
+				<text><![CDATA[➤ Final Classification:]]></text>
+			</element>
+			<element kind="textField" uuid="fb77aa72-4e0d-498e-ad52-e95daa0db2dd" x="101" y="90" width="100" height="15">
+				<paragraph leftIndent="4"/>
+				<expression><![CDATA[$P{THREAT_LEVEL}]]></expression>
+				<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+			</element>
+			<element kind="staticText" uuid="a061c0cc-40e7-44af-bb41-5cecd9247a69" x="2" y="120" width="139" height="20">
+				<text><![CDATA[Strategic Interpretation:]]></text>
+			</element>
+			<element kind="staticText" uuid="8e7688cd-3064-45bd-9a34-7c3f4699d5ac" x="0" y="280" width="460" height="40">
+				<text><![CDATA[CRITICAL
+The entity is classified as a MAXIMUM STRATEGIC THREAT, with potential national or international impact.]]></text>
+			</element>
+			<element kind="staticText" uuid="f9830378-e670-476d-9934-06518ff6fdc1" x="1" y="330" width="461" height="30">
+				<text><![CDATA[Entities classified as CRITICAL are treated as absolute priority by the OVERWATCH Project]]></text>
+			</element>
+			<element kind="staticText" uuid="89bdc843-017f-4e78-8bb8-86615b0a24ac" x="1" y="150" width="379" height="30">
+				<text><![CDATA[LOW / MODERATE
+The entity is considered controllable, with no immediate threat to institutional order.]]></text>
+			</element>
+			<element kind="staticText" uuid="fd26121f-e26e-49bc-b5f0-883d87ea67f0" x="0" y="190" width="480" height="30">
+				<text><![CDATA[HIGH
+The entity represents elevated risk and may compromise sensitive operations if not subject to strict control.]]></text>
+			</element>
+			<element kind="staticText" uuid="f1d2a647-ec58-4f12-b969-a0fe659b3e9f" x="0" y="230" width="480" height="40">
+				<text><![CDATA[SEVERE
+The entity has the potential to cause operational and institutional destabilization. Deployment is highly restricted.]]></text>
+			</element>
+			<element kind="rectangle" uuid="64f4ed7c-aeaa-453f-a6a2-3c997215948a" x="1" y="0" width="558" height="1" backcolor="#030303">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineWidth="0.0"/>
+			</element>
+		</band>
+		<band height="260">
+			<element kind="rectangle" uuid="a1053a3c-b215-430d-8aa5-c10e6978af06" x="-2" y="0" width="558" height="1" backcolor="#030303">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineWidth="0.0"/>
+			</element>
+			<element kind="staticText" uuid="fc1b96f6-7948-4a65-9b7a-6d1bf883ff7b" x="1" y="10" width="269" height="20">
+				<text><![CDATA[V. RECOMMENDED OPERATIONAL DIRECTIVES]]></text>
+			</element>
+			<element kind="staticText" uuid="8777c633-33c5-43bc-8565-371fe857c44e" x="0" y="30" width="270" height="20">
+				<text><![CDATA[(Applicable to classifications above MODERATE)]]></text>
+			</element>
+			<element kind="staticText" uuid="c68f3673-7b03-471c-ad23-1c39d53b1493" x="1" y="60" width="479" height="40">
+				<text><![CDATA[Based on the assigned classification and the registered capabilities, the OVERWATCH System recommends evaluation of the following operational directives, to be applied at the discretion of the competent command authority:]]></text>
+			</element>
+			<element kind="staticText" uuid="07c7f502-5304-412d-aafa-3151c68758b1" x="0" y="110" width="380" height="70">
+				<text><![CDATA[For HIGH classifications
+
+ Evaluate the need for preventive operational reinforcement
+ Plan tactical containment scenarios
+ Prepare support teams for rapid response
+]]></text>
+			</element>
+			<element kind="staticText" uuid="69d4a119-bed9-41fb-8c87-2ce63cb6ecc3" x="0" y="190" width="380" height="70">
+				<text><![CDATA[For SEVERE classifications
+
+ Consider deployment of specialized units
+ Restrict the entity’s operational area, where applicable
+ Maintain elevated operational readiness]]></text>
+			</element>
+		</band>
+		<band height="120">
+			<element kind="staticText" uuid="8dad6959-14f6-4752-a4ef-e8a22577f711" x="0" y="10" width="380" height="70">
+				<text><![CDATA[For CRITICAL classifications
+
+ Activate strategic contingency plans
+ Maintain maximum state of readiness
+ Prepare active containment protocols, if required]]></text>
+			</element>
+			<element kind="staticText" uuid="253cb1b4-ee4a-4389-bc03-4d6391f36ccc" x="2" y="90" width="379" height="30">
+				<text><![CDATA[The directives above are advisory and strategic in nature and do not constitute automatic execution orders.]]></text>
+			</element>
+		</band>
+		<band height="201">
+			<element kind="staticText" uuid="259d65ac-5244-43c5-9423-30fadcb3335b" x="1" y="10" width="249" height="20">
+				<text><![CDATA[VI. COMMAND AND CONTROL DIRECTIVES]]></text>
+			</element>
+			<element kind="staticText" uuid="3bf1da7a-13b4-4e68-b415-ac7ebb228472" x="0" y="40" width="480" height="20">
+				<text><![CDATA[The following permanent operational orders are established by the OVERWATCH Central Command:]]></text>
+			</element>
+			<element kind="staticText" uuid="8a860165-fed0-4227-8bf8-b496a2b204b9" x="0" y="70" width="555" height="100">
+				<text><![CDATA[Full and traceable logging of all interactions
+
+Continuous real-time monitoring
+
+Prohibition of operational deployment without authorization compatible with the assigned threat level
+
+Immediate activation of containment protocols in the event of behavioral anomalies]]></text>
+			</element>
+			<element kind="staticText" uuid="fae3140a-f4c4-4e57-9143-3cd1fcc84127" x="0" y="180" width="480" height="20">
+				<text><![CDATA[Failure to comply with these directives constitutes a serious violation of OVERWATCH protocol.]]></text>
+			</element>
+			<element kind="rectangle" uuid="257277b2-f078-4242-8950-9a118524cb16" x="-2" y="200" width="558" height="1" backcolor="#030303">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineWidth="0.0"/>
+			</element>
+			<element kind="rectangle" uuid="815ff20c-9f2e-4ac2-ae46-bc522b375fe0" x="1" y="0" width="558" height="1" backcolor="#030303">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<pen lineWidth="0.0"/>
+			</element>
+		</band>
+		<band height="130">
+			<element kind="staticText" uuid="d7aa59c9-89e2-419b-bf8c-75e7c29b2414" x="0" y="10" width="280" height="20">
+				<text><![CDATA[VII. OPERATIONAL RESPONSIBILITY]]></text>
+			</element>
+			<element kind="staticText" uuid="b5d5cb1b-f4f2-41c9-b645-252f711558a6" x="0" y="39" width="480" height="21">
+				<text><![CDATA[The agent identified in this report assumes direct responsibility, before the OVERWATCH Project, for:]]></text>
+			</element>
+			<element kind="staticText" uuid="a9a5009d-b0ca-427b-8a7c-d649bb285105" x="0" y="70" width="480" height="60">
+				<text><![CDATA[ Accuracy of the recorded information
+ Full compliance with security protocols
+ Immediate communication of any change in risk status
+ Formal request for reclassification, when applicable]]></text>
+			</element>
+		</band>
+	</detail>
+	<pageFooter height="100" splitType="Stretch">
+		<element kind="staticText" uuid="f398c375-a56b-4ef4-8c9a-2df8b4a2b9c3" x="0" y="0" width="80" height="20">
+			<text><![CDATA[Date of Issue:]]></text>
+		</element>
+		<element kind="textField" uuid="e0493514-ee16-4349-8e1f-8e73acc99141" x="80" y="0" width="100" height="20" pattern="M/d/yy h:mm a">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="staticText" uuid="50d6fc26-92ff-42f8-b03e-380fc0f53195" x="1" y="20" width="179" height="20">
+			<text><![CDATA[Issuing System: OVERWATCH Project]]></text>
+		</element>
+		<element kind="staticText" uuid="81699def-b716-439e-adae-65e008aa35a6" x="1" y="40" width="179" height="20">
+			<text><![CDATA[Status: Official Document]]></text>
+		</element>
+		<element kind="staticText" uuid="0e7bf75e-37ee-4ba1-a63f-bf69c558b501" x="0" y="60" width="180" height="20">
+			<text><![CDATA[Classification: TOP SECRET]]></text>
+		</element>
+		<element kind="staticText" uuid="bc1fed5a-d6ec-4d94-97b9-ac3c82385efd" x="0" y="80" width="180" height="20">
+			<text><![CDATA[Access: OVERWATCH High Command]]></text>
+		</element>
+		<element kind="textField" uuid="e2b0f6a8-5b71-4af2-9b09-4c47af91750b" x="445" y="70" width="100" height="30" hTextAlign="Right">
+			<expression><![CDATA["Page " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+</jasperReport>

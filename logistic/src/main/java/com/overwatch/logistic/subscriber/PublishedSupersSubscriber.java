@@ -28,7 +28,6 @@ public class PublishedSupersSubscriber {
             log.info("Receiving JSON: {} ", json);
             var representation = jsonMapper.readValue(json, DetailAgentRepresentation.class);
             Agent agent = mapper.toAgent(representation);
-            log.info("Fields that will be on the report: {}",agent);
             service.generateReport(agent);
         } catch (JacksonException e) {
             log.error("Error when consuming published supers topic");
