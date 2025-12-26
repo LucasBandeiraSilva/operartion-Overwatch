@@ -1,4 +1,4 @@
-package com.overwatch.logistic.subscriber;
+package com.overwatch.logistic.infrastructure.messaging.subscriber;
 
 import com.overwatch.logistic.domain.model.Agent;
 import com.overwatch.logistic.domain.service.ReportGeneratorService;

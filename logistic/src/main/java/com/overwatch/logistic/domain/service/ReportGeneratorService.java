@@ -1,6 +1,7 @@
 package com.overwatch.logistic.domain.service;
 
 import com.overwatch.logistic.domain.model.Agent;
+import com.overwatch.logistic.infrastructure.messaging.publisher.LogisticPublisher;
 import com.overwatch.logistic.infrastructure.storage.minio.BucketFile;
 import com.overwatch.logistic.infrastructure.storage.minio.service.BucketService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ public class ReportGeneratorService {
 
     private final ReportService reportService;
     private final BucketService bucketService;
+    private final LogisticPublisher logisticPublisher;
 
     public void generateReport( Agent agent ){
 
@@ -27,6 +29,10 @@ public class ReportGeneratorService {
         var file = new BucketFile(nameArchive,new ByteArrayInputStream(byteArray), MediaType.APPLICATION_PDF,byteArray.length);
 
         bucketService.upload(file);
+
+        String url = bucketService.getUrl(nameArchive);
+        logisticPublisher.publishReport(agent,url);
+
         log.info("Report already generated!");
     }
 }

@@ -23,6 +23,7 @@ overwatch:
     kafka:
       topics:
         published-supers: overwatch.published-supers
+        report-supers-url: overwatch.report-supers-url
 
 minio:
   url: 'http://localhost:9000'

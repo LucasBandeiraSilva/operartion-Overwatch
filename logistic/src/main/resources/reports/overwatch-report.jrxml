@@ -103,9 +103,6 @@
 			<element kind="textField" uuid="0c43f59e-a5cb-4fd8-9ed7-de05d67728f0" x="90" y="90" width="130" height="20">
 				<expression><![CDATA[$P{DATE_OF_BIRTH}]]></expression>
 			</element>
-			<element kind="textField" uuid="6217de97-b0ce-4fec-9f21-1f0e0cf6facc" x="90" y="70" width="130" height="20">
-				<expression><![CDATA[$P{AGENT_CODE}]]></expression>
-			</element>
 			<element kind="textField" uuid="976aa449-b64f-4af0-83d6-a4d4b2b1b4a7" x="101" y="220" width="119" height="20">
 				<expression><![CDATA[$P{NAME_SUPER}]]></expression>
 			</element>
@@ -129,6 +126,9 @@
 			</element>
 			<element kind="textField" uuid="9e3d646c-bf70-4e2b-8471-9959e49b45ed" x="1" y="430" width="100" height="60">
 				<expression><![CDATA[$P{ABILITIES}]]></expression>
+			</element>
+			<element kind="textField" uuid="2bf4ef3c-336f-4c6a-9186-4943136e42e5" x="90" y="70" width="130" height="20">
+				<expression><![CDATA[$P{AGENT_ROLE}]]></expression>
 			</element>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 		</band>

@@ -1,10 +1,7 @@
 package com.overwatch.logistic.domain.service;
 
-import com.overwatch.logistic.domain.model.Ability;
 import com.overwatch.logistic.domain.model.Agent;
-import com.overwatch.logistic.infrastructure.messaging.subscriber.representation.DetailAgentRepresentation;
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -13,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -30,12 +26,6 @@ public class ReportService {
         try(InputStream inputStream = report.getInputStream()) {
 
             Map <String, Object> params = getParams(agent);
-
-            List <String> abilityList = agent.getSupers().getAbilities();
-
-            List<Ability> abilities = abilityList.stream().map(Ability::new).toList();
-
-            var dataSource = new JRBeanCollectionDataSource(abilities);
 
             JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());

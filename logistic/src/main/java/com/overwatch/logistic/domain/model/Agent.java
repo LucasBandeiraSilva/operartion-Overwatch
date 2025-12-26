@@ -19,7 +19,7 @@ public class Agent {
     private String name;
     private String agentCode;
     private String dateOfBirth;
-    private AgentRole agentRole;
+    private String agentRole;
     private Supers supers;
 }
 

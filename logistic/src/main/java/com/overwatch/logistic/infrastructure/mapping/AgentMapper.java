@@ -13,5 +13,6 @@ public interface AgentMapper {
     @Mapping(source = "superCode",target = "supers.superCode")
     @Mapping(source = "abilities",target = "supers.abilities")
     @Mapping(source = "threatLevel",target = "supers.threatLevel")
+    @Mapping(source = "agentRole",target = "agentRole")
     Agent toAgent( DetailAgentRepresentation detailAgentRepresentation );
 }
