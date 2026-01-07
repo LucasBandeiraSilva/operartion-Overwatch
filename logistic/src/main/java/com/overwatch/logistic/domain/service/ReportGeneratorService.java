@@ -31,7 +31,7 @@ public class ReportGeneratorService {
         bucketService.upload(file);
 
         String url = bucketService.getUrl(nameArchive);
-        logisticPublisher.publishReport(agent,url);
+        logisticPublisher.publishReport(agent.getSupers(),url);
 
         log.info("Report already generated!");
     }

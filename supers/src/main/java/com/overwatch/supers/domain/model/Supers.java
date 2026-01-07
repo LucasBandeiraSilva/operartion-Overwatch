@@ -1,5 +1,6 @@
 package com.overwatch.supers.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Supers {
 
     private String name;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
     private String superCode;
@@ -33,6 +35,9 @@ public class Supers {
 
     @Enumerated(EnumType.STRING)
     private ThreatLevel threatLevel;
+
+    @Column(columnDefinition = "TEXT")
+    private String urlReport;
 
     private boolean active;
 

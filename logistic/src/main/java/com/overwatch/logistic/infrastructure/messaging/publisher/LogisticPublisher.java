@@ -1,6 +1,7 @@
 package com.overwatch.logistic.infrastructure.messaging.publisher;
 
 import com.overwatch.logistic.domain.model.Agent;
+import com.overwatch.logistic.domain.model.Supers;
 import com.overwatch.logistic.infrastructure.messaging.publisher.representation.UrlRepresentation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +22,9 @@ public class LogisticPublisher {
     @Value("${overwatch.config.kafka.topics.report-supers-url}")
     private String topic;
 
-    public void publishReport( Agent agent, String urlReport ){
-        var representation = new UrlRepresentation(agent.getAgentCode(), urlReport);
-
+    public void publishReport( Supers supers, String urlReport ){
+        var representation = new UrlRepresentation(supers.getSuperCode(), urlReport);
+        log.info("representation: {}",representation);
         try {
             String json = jsonMapper.writeValueAsString(representation);
             kafkaTemplate.send(topic,"data",json);

@@ -1,6 +1,11 @@
 spring:
   application:
     name: OW-supers
+  kafka:
+    bootstrap-servers: ${overwatch.config.kafka.server-url}
+    consumer:
+      group-id: overwatch-supers
+      auto-offset-reset: earliest
 
   datasource:
     url: jdbc:mysql://localhost:3306/overwatch_supers_db
@@ -21,6 +26,14 @@ eureka:
 
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+
+overwatch:
+  config:
+    kafka:
+      server-url: 'localhost:29092'
+      topics:
+        report-supers-url: overwatch.report-supers-url
+
 
 server:
   port: 8082

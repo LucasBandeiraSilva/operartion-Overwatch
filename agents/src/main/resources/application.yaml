@@ -1,17 +1,27 @@
 spring:
   application:
     name: OW-agents
+
+
+  kafka:
+    bootstrap-servers: ${overwatch.config.kafka.server-url}
+    consumer:
+      group-id: overwatch-agents
+      auto-offset-reset: earliest
+
   datasource:
     url: jdbc:mysql://localhost:3306/overwatch_agents_db
     username: nickFury123
     password: nickFuryShield123
+
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: true
     properties:
       hibernate:
-        format_sql:true
+        format_sql: true
+
 
 eureka:
   client:
@@ -31,6 +41,7 @@ overwatch:
       server-url: 'localhost:29092'
       topics:
         published-supers: 'overwatch.published-supers'
+        report-supers-url: overwatch.report-supers-url
 
 
 server:
