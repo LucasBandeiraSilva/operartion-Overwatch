@@ -15,6 +15,8 @@ This system was built with **scalability, decoupling, and real-world architectur
 - Publish consolidated intelligence events using **Apache Kafka**
 - Generate professional operational reports asynchronously
 - Store classified reports using object storage (**MinIO**)
+- **API Gateway:** Spring Cloud Gateway
+
 
 ---
 
@@ -29,24 +31,38 @@ This system was built with **scalability, decoupling, and real-world architectur
 
 ### High-Level Flow
 
-Agent Service ---> Supers Service (REST / OpenFeign)
-|
-| publish (Kafka Event)
-v
-Kafka Topic
-|
-v
-Logistics / Report Service
-|
-v
-MinIO (PDF Operational Reports)
+![high-level-flow](docs/images/high-level-flow.png)
+
+This diagram illustrates the high-level interaction between clients, API Gateway,
+microservices, event-driven processing with Kafka, and operational report storage
+using MinIO.
+
 
 
 ---
 
 ## 🧩 Microservices Breakdown
 
+### API Gateway — `:8080`
+
+The API Gateway acts as the single entry point for the system, centralizing access to all microservices.
+
+### Responsibilities
+- Route external requests to internal microservices
+- Centralize API exposure
+- Abstract internal service ports from clients
+- Prepare the system for future concerns such as authentication, authorization and rate limiting
+
+### Routing Overview
+- `/agent/**` → Agent Service (`:8081`)
+- `/supers/**` → Supers Service (`:8082`)
+
+All external clients must interact **exclusively through the Gateway**.
+
+
 ### Agent Service — `:8081`
+> This service is accessed externally through the API Gateway.
+
 
 **Responsibilities**
 - Agent lifecycle management
@@ -110,6 +126,8 @@ MinIO (PDF Operational Reports)
 ---
 
 # Supers Service — `:8082`
+> This service is accessed externally through the API Gateway.
+
 
 # Responsibilities
 
@@ -183,7 +201,7 @@ MinIO (PDF Operational Reports)
 #  Event-Driven Communication (Kafka)
 
 * **Publisher**: Agent Service
-* **Subscriber**: Logistics / Supers Service
+* **Subscriber**: Logistics / report Service
 
 ## Published Events Include
 
@@ -202,6 +220,13 @@ MinIO (PDF Operational Reports)
 ---
 
 #  Infrastructure (Docker)
+
+## Spring Cloud Gateway
+
+- Runs on port **8080**
+- Acts as the single entry point for the system
+- Routes requests to Agent and Supers services
+
 ## Apache Kafka + Zookeeper + Kafka UI
 
 ```yaml
@@ -210,21 +235,36 @@ version: '3.9'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.9.4
+    depends_on:
+      - zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
 
   kafka:
     image: confluentinc/cp-kafka:7.9.4
     environment:
+      KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:
       - "29092:29092"
 
   kafka-ui:
     image: provectuslabs/kafka-ui
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
     ports:
-      - "8080:8080"
+      - "8090:8080"
 
 ```
 
@@ -333,7 +373,6 @@ MinIO was chosen to simulate enterprise-grade object storage, aligning with real
 
 * API documentation using Swagger / OpenAPI
 * Authentication and authorization (JWT / Keycloak)
-* API Gateway for centralized access control
 * Advanced validation and contract testing
 
 ---
