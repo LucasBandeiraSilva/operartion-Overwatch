@@ -26,6 +26,8 @@ eureka:
 
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+    prefer-ip-address: true
+
 
 overwatch:
   config:
