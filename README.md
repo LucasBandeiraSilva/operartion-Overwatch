@@ -8,7 +8,7 @@ This system was built with **scalability, decoupling, and real-world architectur
 
 ---
 
-## Project Purpose
+# Project Purpose
 
 - Manage intelligence agents and their operational status
 - Register and control enhanced individuals (supers)
@@ -20,7 +20,7 @@ This system was built with **scalability, decoupling, and real-world architectur
 
 ---
 
-## Architecture Overview
+# Architecture Overview
 
 - **Architecture:** Microservices
 - **Synchronous Communication:** REST (HTTP)
@@ -29,7 +29,7 @@ This system was built with **scalability, decoupling, and real-world architectur
 - **File Storage:** MinIO (S3-compatible)
 - **Infrastructure:** Docker & Docker Compose
 
-### High-Level Flow
+# High-Level Flow
 
 ![high-level-flow](docs/images/high-level-flow.png)
 
@@ -41,7 +41,64 @@ using MinIO.
 
 ---
 
-## 🧩 Microservices Breakdown
+# Security & Identity Management (Spring Security + Keycloak)
+
+The system uses Keycloak as an external Identity and Access Management (IAM) solution, integrated with Spring Security to provide authentication and authorization based on JWT (OAuth 2.0 / OpenID Connect).
+
+This approach follows enterprise-grade security practices, separating identity concerns from business logic
+
+## Authentication Flow
+
+- The client authenticates with Keycloak
+- Keycloak issues a JWT access token
+- The token is sent in requests via the Authorization: Bearer <token> header
+- Each protected microservice validates the token independently
+- Access is granted or denied based on mapped roles
+
+> The API Gateway forwards requests but does not own authorization logic.
+
+---
+
+## Role-Based Authorization
+
+Authorization is enforced at the microservice level, using Spring Security with role-based access control.
+
+### Defined roles:
+
+- AGENT
+- DIRECTOR
+
+Example access rules:
+
+> GET /agent/** → AGENT or DIRECTOR
+> POST /agent/** → DIRECTOR only
+> PUT /agent/** → DIRECTOR only
+> DELETE /agent/** → DIRECTOR only
+
+---
+# JWT Role Mapping
+
+Keycloak roles are extracted from client roles and mapped into Spring Security authorities using a custom JwtAuthenticationConverter
+
+## This ensures:
+
+- Correct translation of Keycloak roles into Spring Security authorities, respecting the expected format (ROLE_* when required)
+- Consistent authorization behavior across endpoints, avoiding mismatches between token claims and security rules
+- Explicit control over how authorization data is interpreted by the application, instead of relying on Spring Security’s default claim resolution
+---
+# Security Design Principles
+
+- Each microservice validates JWT tokens independently
+- No trust is placed on upstream services for authorization
+- Roles are managed centrally in Keycloak
+- Services remain stateless and scalable
+- Clean separation between:
+  - Identity (Keycloak)
+  - Authorization (Spring Security)
+  - Routing (API Gateway)
+---
+
+# Microservices Breakdown
 
 ### API Gateway — `:8080`
 
@@ -372,9 +429,7 @@ MinIO was chosen to simulate enterprise-grade object storage, aligning with real
 ## Next Steps
 
 * API documentation using Swagger / OpenAPI
-* Authentication and authorization (JWT / Keycloak)
 * Advanced validation and contract testing
-
 ---
 
 # Author
