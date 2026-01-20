@@ -73,18 +73,14 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>tools.jackson.core</groupId>-->
-<!--            <artifactId>jackson-databind</artifactId>-->
-<!--            <version>3.0.0</version> &lt;!&ndash; Ou a versão mais atual de 2026 &ndash;&gt;-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/tools.jackson.datatype/jackson-datatype-jsr310 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>tools.jackson.datatype</groupId>-->
-<!--            <artifactId>jackson-datatype-jsr310</artifactId>-->
-<!--            <version>3.0.0-rc2</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security-oauth2-resource-server</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.mapstruct</groupId>
