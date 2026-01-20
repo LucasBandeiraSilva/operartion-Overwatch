@@ -26,7 +26,10 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/agent/**").hasAnyRole("AGENT, DIRECTOR")
                         .requestMatchers(HttpMethod.POST, "/agent/**").hasRole("DIRECTOR")
+                        .requestMatchers(HttpMethod.PUT,"/agent/**").hasRole("DIRECTOR")
+                        .requestMatchers(HttpMethod.DELETE,"/agent/**").hasRole("DIRECTOR")
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> {
